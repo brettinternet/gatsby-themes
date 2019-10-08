@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{189:function(e,n,t){"use strict";t.r(n);var o=t(0),r=t.n(o);n.default=function(e){return r.a.createElement("h1",null,"Hello, from the Margot theme!")}}}]);
+//# sourceMappingURL=component---gatsby-theme-margot-src-pages-margot-js-b142e78ab8bc73fcdd43.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///../gatsby-theme-margot/src/pages/margot.js"],"names":["props"],"mappings":"0FAAA,2BAEe,mBAAAA,GAAK,OAAI","file":"component---gatsby-theme-margot-src-pages-margot-js-b142e78ab8bc73fcdd43.js","sourcesContent":["import React from \"react\"\r\n\r\nexport default props => <h1>Hello, from the Margot theme!</h1>"],"sourceRoot":""}

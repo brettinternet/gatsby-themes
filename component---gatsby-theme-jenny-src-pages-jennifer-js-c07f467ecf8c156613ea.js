@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{188:function(e,n,t){"use strict";t.r(n);var o=t(0),r=t.n(o);n.default=function(e){return r.a.createElement("h1",null,"Hello, from the Jenny theme!")}}}]);
+//# sourceMappingURL=component---gatsby-theme-jenny-src-pages-jennifer-js-c07f467ecf8c156613ea.js.map
