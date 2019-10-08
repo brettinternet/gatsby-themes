@@ -1,3 +1,11 @@
 module.exports = {
-  plugins: [{ resolve: `gatsby-theme-minimal`, options: {} }],
+  pathPrefix: '/gatsby-themes',
+  plugins: [
+    {
+      resolve: `gatsby-theme-jenny`,
+    },
+    {
+      resolve: `gatsby-theme-margot`,
+    }
+  ],
 }

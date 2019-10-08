@@ -1,18 +1,15 @@
 {
-  "name": "example",
+  "name": "gatsby-theme-jenny",
   "version": "1.0.0",
   "main": "gatsby-config.js",
   "author": "Brett Internet <brettinternet@gmail.com> (@brettinternet)",
   "license": "MIT",
-  "scripts": {
-    "start": "gatsby develop",
-    "build": "gatsby build"
-  },
-  "dependencies": {
+  "peerDependencies": {
     "gatsby": "^2.15.29",
-    "gatsby-theme-jenny": "1.0.0",
-    "gatsby-theme-margot": "1.0.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2"
+  },
+  "dependencies": {
+    "gatsby-plugin-page-creator": "^2.1.24"
   }
 }

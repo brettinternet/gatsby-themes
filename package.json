@@ -1,14 +1,22 @@
 {
-  "name": "gatsby-starter-theme-workspace",
+  "name": "gatsby-themes",
+  "author": "Brett Internet <brettinternet@gmail.com> (@brettinternet)",
   "private": true,
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "yarn workspace example build"
+    "start": "yarn workspace example start",
+    "build": "yarn workspace example build",
+    "predeploy": "yarn run build --prefix-paths",
+    "deploy": "gh-pages -d example/public"
   },
   "workspaces": [
-    "gatsby-theme-minimal",
+    "gatsby-theme-jenny",
+    "gatsby-theme-margot",
     "example"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
+  }
 }
