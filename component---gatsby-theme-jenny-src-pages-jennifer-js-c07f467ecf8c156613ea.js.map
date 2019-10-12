@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///../gatsby-theme-jenny/src/pages/jennifer.js"],"names":["props"],"mappings":"0FAAA,2BAEe,mBAAAA,GAAK,OAAI","file":"component---gatsby-theme-jenny-src-pages-jennifer-js-c07f467ecf8c156613ea.js","sourcesContent":["import React from \"react\"\r\n\r\nexport default props => <h1>Hello, from the Jenny theme!</h1>"],"sourceRoot":""}
