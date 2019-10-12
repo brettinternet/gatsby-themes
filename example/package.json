@@ -10,9 +10,15 @@
   },
   "dependencies": {
     "gatsby": "^2.15.29",
+    "gatsby-image": "^2.2.27",
+    "gatsby-plugin-react-helmet": "^3.1.11",
+    "gatsby-plugin-sharp": "^2.2.29",
+    "gatsby-source-filesystem": "^2.1.31",
     "gatsby-theme-jenny": "1.0.0",
     "gatsby-theme-margot": "1.0.0",
+    "gatsby-transformer-sharp": "^2.2.21",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "react-helmet": "^5.2.1"
   }
 }

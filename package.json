@@ -1,6 +1,10 @@
 {
   "name": "gatsby-themes",
   "author": "Brett Internet <brettinternet@gmail.com> (@brettinternet)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brettinternet/gatsby-themes"
+  },
   "private": true,
   "version": "0.0.1",
   "main": "index.js",
@@ -17,6 +21,7 @@
     "example"
   ],
   "devDependencies": {
-    "gh-pages": "^2.1.1"
+    "gh-pages": "^2.1.1",
+    "prettier": "^1.18.2"
   }
 }
