@@ -1,1 +1,1 @@
-{"data":{"site":{"siteMetadata":{"menuLinks":[{"name":"Home","to":"//margot/"},{"name":"RSVP","to":"//margot/rsvp/"},{"name":"Registry","to":"//margot/registry/"},{"name":"Photos","to":"//margot/photos/"},{"name":"Details","to":"//margot/details/"}]}}}}
+{"data":{"site":{"siteMetadata":{"menuLinks":[{"name":"Home","to":"/"},{"name":"RSVP","to":"/rsvp/"},{"name":"Registry","to":"/registry/"},{"name":"Photos","to":"/photos/"},{"name":"Details","to":"/details/"}]}}}}
