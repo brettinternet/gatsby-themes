@@ -1,12 +1,12 @@
 # Gatsby Themes
 
-This is a playground for small sites that I create. I turn them into themes to reuse or for others to try.
+This is a playground for small sites that I create. I turn them into [Gatsby themes](https://www.gatsbyjs.org/tutorial/building-a-theme/) to reuse or for others to try.
 
 [View demo](https://brettinternet.github.io/brettinternet/gatsby-themes)
 
 ## Setup
 
-Gatsby theme development uses [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/).
+[Gatsby theme development](https://www.gatsbyjs.org/blog/2019-05-22-setting-up-yarn-workspaces-for-theme-development/) uses [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/).
 
 ```shell
 gatsby new my-site https://github.com/brettinternet/gatsby-themes
