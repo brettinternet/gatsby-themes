@@ -2,6 +2,8 @@
 
 This is a minimal site designed to display details for an event, an event location or images.
 
+[Margot theme demo](https://brettinternet.github.io/gatsby-themes/margot/)
+
 #### Features
 
 - Images with a minimal lightbox

@@ -68,7 +68,6 @@ export const query = graphql`
             themePathPrefix
           }
         }
-        isProd
       }
     }
     heroImage: file(relativePath: { regex: "/hero.jpg/" }) {
