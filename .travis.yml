@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - "stable"
 cache:
+  yarn: true
   directories:
     - node_modules
 deploy:
@@ -14,8 +15,6 @@ deploy:
     branch: master
 before_script:
   - "npm i -g gatsby"
-  - "npm i"
-script:
-  - "npm run test"
+  - "yarn"
 after_success:
-  - "npm run deploy"
+  - "yarn run deploy"
