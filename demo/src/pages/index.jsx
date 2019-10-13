@@ -61,7 +61,7 @@ const IndexPage = ({ data }) => {
                   }
                 `}
               >
-                <a href={pathPrefix + options.themePathPrefix}>{resolve}</a>
+                <a href={pathPrefix + options.demoPathPrefix}>{resolve}</a>
               </Text>
             </Flex>
           ))}
@@ -91,7 +91,7 @@ export const query = graphql`
         themes {
           resolve
           options {
-            themePathPrefix
+            demoPathPrefix
           }
         }
       }

@@ -1,4 +1,4 @@
-const themes = require('./themes')
+const themes = require('../themes')
 const { repository } = require('../package.json')
 
 module.exports = {

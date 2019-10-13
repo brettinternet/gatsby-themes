@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "gatsby-config.js",
   "author": "Brett Internet <brettinternet@gmail.com> (@brettinternet)",
-  "license": "MIT",
   "peerDependencies": {
     "gatsby": "^2.15.29",
     "react": "^16.10.2",

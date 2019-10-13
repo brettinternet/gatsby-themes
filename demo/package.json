@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "gatsby-config.js",
   "author": "Brett Internet <brettinternet@gmail.com> (@brettinternet)",
-  "license": "MIT",
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build"

@@ -8,7 +8,7 @@
   "private": true,
   "version": "0.0.1",
   "main": "index.js",
-  "license": "MIT",
+  "license": "AGPL-3",
   "scripts": {
     "start": "yarn workspace example start",
     "start:demo": "yarn workspace demo start",
@@ -19,11 +19,10 @@
     "test": "test --passWithNoTests"
   },
   "workspaces": [
-    "gatsby-theme-jenny",
-    "gatsby-theme-margot",
     "example",
     "demo",
-    "builder"
+    "builder",
+    "gatsby-theme-margot"
   ],
   "devDependencies": {
     "gh-pages": "^2.1.1",

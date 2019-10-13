@@ -21,8 +21,7 @@ const repoDir = path.join(__dirname, '..')
 const demoDir = path.join(__dirname, '..', 'demo')
 const demoPublicDir = path.join(demoDir, 'public')
 const themeGatsbyConfig = path.join(__dirname, 'gatsby-config.js')
-
-const themes = require(path.join(demoDir, 'themes'))
+const themes = require(path.join(repoDir, 'themes'))
 const demoConfig = require(path.join(demoDir, 'gatsby-config'))
 const { pathPrefix: demoPathPrefix } = demoConfig
 
@@ -33,7 +32,7 @@ if (!fs.existsSync(demoDir)) {
 for (let i = 0; i < themes.length; i++) {
   const theme = themes[i];
   const themeVersion = '1.0.0'
-  const themeShortName = theme.options.themePathPrefix.split('/')[1]
+  const themeShortName = theme.options.demoPathPrefix.split('/')[1]
 
   /**
    * Yarn workspace install theme in case it doesn't already exist
@@ -55,12 +54,12 @@ for (let i = 0; i < themes.length; i++) {
    * Write `gatsby-config.js`
    */
   const configFileText = `module.exports = {
-  pathPrefix: '${ demoPathPrefix }${ theme.options.themePathPrefix }',
+  pathPrefix: '${ demoPathPrefix }${ theme.options.demoPathPrefix }',
   plugins: [
     {
       resolve: '${ theme.resolve }',
       options: {
-        themePathPrefix: '${ theme.options.themePathPrefix }'
+        demoPathPrefix: '${ theme.options.demoPathPrefix }'
       }
     }
   ],
@@ -93,7 +92,7 @@ for (let i = 0; i < themes.length; i++) {
   }
 
   /**
-   * Move `bin/build/public` to `demo/public${themePathPrefix}`
+   * Move `bin/build/public` to `demo/public${demoPathPrefix}`
    */
   const themePublicDir = path.join(demoPublicDir, themeShortName)
   try {
