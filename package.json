@@ -15,7 +15,8 @@
     "build": "yarn workspace demo build",
     "postbuild": "yarn workspace builder build",
     "predeploy": "yarn run build --prefix-paths",
-    "deploy": "gh-pages -d demo/public"
+    "deploy": "gh-pages -d demo/public",
+    "test": "test --passWithNoTests"
   },
   "workspaces": [
     "gatsby-theme-jenny",
