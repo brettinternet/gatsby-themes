@@ -2,60 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-const Option = ({ name, field, value, checked, onChange, disabled }) => (
-  <Container disabled={disabled}>
-    {field}
-    <input
-      type="radio"
-      name={name}
-      checked={checked}
-      onChange={onChange}
-      value={value}
-      disabled={disabled}
-    />
-    <Checkmark />
-  </Container>
-)
-
-const Radio = ({ name, label, options, required, disabled, onChange }) => (
-  <Wrapper>
-    <Label required={required} aria-label={name} disabled={disabled}>
-      {label}
-    </Label>
-    <Flex>
-      {options.map(({ field, checked, value }, index) => (
-        <Option
-          key={index}
-          field={field}
-          onChange={onChange}
-          checked={checked}
-          name={name}
-          value={value}
-          required={required && index === 0}
-          disabled={disabled}
-        />
-      ))}
-    </Flex>
-  </Wrapper>
-)
-
-Radio.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      field: PropTypes.any.isRequired,
-      checked: PropTypes.bool,
-      value: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
-  required: PropTypes.bool,
-  disabled: PropTypes.bool,
-  label: PropTypes.string,
-}
-
-export default Radio
-
 const Wrapper = styled.div`
   margin-bottom: 12px;
 `
@@ -146,3 +92,57 @@ const Label = styled.label`
     padding-right: 12px;
   }
 `
+
+const Option = ({ name, field, value, checked, onChange, disabled }) => (
+  <Container disabled={disabled}>
+    {field}
+    <input
+      type="radio"
+      name={name}
+      checked={checked}
+      onChange={onChange}
+      value={value}
+      disabled={disabled}
+    />
+    <Checkmark />
+  </Container>
+)
+
+const Radio = ({ name, label, options, required, disabled, onChange }) => (
+  <Wrapper>
+    <Label required={required} aria-label={name} disabled={disabled}>
+      {label}
+    </Label>
+    <Flex>
+      {options.map(({ field, checked, value }, index) => (
+        <Option
+          key={index}
+          field={field}
+          onChange={onChange}
+          checked={checked}
+          name={name}
+          value={value}
+          required={required && index === 0}
+          disabled={disabled}
+        />
+      ))}
+    </Flex>
+  </Wrapper>
+)
+
+Radio.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      field: PropTypes.any.isRequired,
+      checked: PropTypes.bool,
+      value: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  label: PropTypes.string,
+}
+
+export default Radio

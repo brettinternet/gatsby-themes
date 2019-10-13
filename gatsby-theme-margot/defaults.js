@@ -1,7 +1,6 @@
 const { get } = require('lodash')
 
 const defaults = {
-  pathPrefix: '/margot',
   title: 'Margot',
   description: `A Gatsby theme by @brettinternet`,
   /**
@@ -116,17 +115,20 @@ const defaults = {
       href: '#',
     },
   ],
+  layoutPath: `${ __dirname }/src/components/Layout.jsx`,
+  imagesPath: `${ __dirname }/content/images`,
 }
 
 module.exports = (options) => Object.assign({}, options, {
-  pathPrefix: useDefault(options, 'pathPrefix'),
   title: useDefault(options, 'title'),
   description: useDefault(options, 'description'),
-  menuLinks: prefixMenuLinks(options, useDefault(options, 'menuLinks')),
+  menuLinks: useDefault(options, 'menuLinks'),
   eventDetails: useDefault(options, 'eventDetails'),
   rsvpDetails: useDefault(options, 'rsvpDetails'),
   registries: useDefault(options, 'registries'),
   pageCreatorIgnore: useDefault(options, 'pageCreatorIgnore'),
+  layoutPath: useDefault(options, 'layoutPath'),
+  imagesPath: useDefault(options, 'imagesPath'),
 })
 
 function useDefault(options, key) {
@@ -136,11 +138,4 @@ function useDefault(options, key) {
 
 function useFalsyEmptyString(value) {
   return value || ''
-}
-
-function prefixMenuLinks(options, links) {
-  if (options.themePathPrefix) {
-    return links.map(link => Object.assign({}, link, { to: `/${ options.themePathPrefix }${ link.to }` }))
-  }
-  return links
 }

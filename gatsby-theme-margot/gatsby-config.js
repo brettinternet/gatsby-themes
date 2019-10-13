@@ -12,6 +12,8 @@ module.exports = (options) => {
     registries,
     menuLinks,
     pageCreatorIgnore,
+    layoutPath,
+    imagesPath,
   } = withDefaults(options)
 
   return {
@@ -43,7 +45,7 @@ module.exports = (options) => {
         resolve: `gatsby-source-filesystem`,
         options: {
           name: `images`,
-          path: `${ __dirname }/content/images`,
+          path: imagesPath,
         },
       },
       `gatsby-transformer-sharp`,
@@ -67,7 +69,7 @@ module.exports = (options) => {
       {
         resolve: `gatsby-plugin-layout`,
         options: {
-          component: require.resolve(`./src/components/Layout.jsx`),
+          component: require.resolve(layoutPath),
         },
       },
     ]

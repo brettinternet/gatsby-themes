@@ -10,6 +10,8 @@ import Hide from "components/Hide"
 import ScrollLock, { TouchScrollable } from "react-scrolllock"
 import { Text } from "components/Basic"
 
+const headerItemZIndex = 20
+
 const NavLinks = ({ links }) => (
   <Links>
     {links.map(({ name, to, ...otherProps }) => (
@@ -94,7 +96,6 @@ class Header extends React.Component {
 
 export default Header
 
-const headerItemZIndex = 20
 const overlayZIndex = 15
 
 const hamburgerColor = "#0a0a0a"

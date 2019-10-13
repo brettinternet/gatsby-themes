@@ -9,6 +9,16 @@ import Helmet from "react-helmet"
 import Header from "components/Header"
 import Footer from "components/Footer"
 
+const App = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`
+
+const Main = styled.main`
+  flex-grow: 1;
+`
+
 const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query MargotThemeLayout {
@@ -75,13 +85,3 @@ Layout.propTypes = {
 }
 
 export default Layout
-
-const App = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`
-
-const Main = styled.main`
-  flex-grow: 1;
-`

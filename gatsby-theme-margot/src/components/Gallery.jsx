@@ -9,6 +9,63 @@ import ScrollLock, { TouchScrollable } from "react-scrolllock"
 import { Flex, Box } from "components/Basic"
 
 const mobileMaxWidth = 700
+
+const StyledImg = styled(Img)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  height: 100%;
+
+  & > img {
+    object-fit: cover !important;
+    object-position: 0% 0% !important;
+  }
+`
+
+const MobileView = styled.div`
+  display: none;
+  position: relative;
+
+  @media (max-width: ${mobileMaxWidth}px) {
+    display: block;
+  }
+`
+
+const A = styled.a`
+  cursor: zoom-in;
+  display: inline;
+
+  @media (max-width: ${mobileMaxWidth}px) {
+    display: none;
+  }
+`
+
+const LightboxModal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 1);
+  cursor: zoom-out;
+  z-index: 100;
+
+  @media (max-width: ${mobileMaxWidth}px) {
+    display: none;
+  }
+`
+
+const LightboxContent = styled.div`
+  margin: 1rem;
+  max-width: ${({ theme }) => theme.appWidth}px;
+  width: 100%;
+`
+
 class Gallery extends React.Component {
   state = {
     showLightbox: false,
@@ -140,62 +197,6 @@ class Gallery extends React.Component {
     )
   }
 }
-
-const StyledImg = styled(Img)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  height: 100%;
-
-  & > img {
-    object-fit: cover !important;
-    object-position: 0% 0% !important;
-  }
-`
-
-const MobileView = styled.div`
-  display: none;
-  position: relative;
-
-  @media (max-width: ${mobileMaxWidth}px) {
-    display: block;
-  }
-`
-
-const A = styled.a`
-  cursor: zoom-in;
-  display: inline;
-
-  @media (max-width: ${mobileMaxWidth}px) {
-    display: none;
-  }
-`
-
-const LightboxModal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 1);
-  cursor: zoom-out;
-  z-index: 100;
-
-  @media (max-width: ${mobileMaxWidth}px) {
-    display: none;
-  }
-`
-
-const LightboxContent = styled.div`
-  margin: 1rem;
-  max-width: ${({ theme }) => theme.appWidth}px;
-  width: 100%;
-`
 
 Gallery.propTypes = {
   images: PropTypes.array.isRequired,

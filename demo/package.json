@@ -1,0 +1,26 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "main": "gatsby-config.js",
+  "author": "Brett Internet <brettinternet@gmail.com> (@brettinternet)",
+  "license": "MIT",
+  "scripts": {
+    "start": "gatsby develop",
+    "build": "gatsby build"
+  },
+  "dependencies": {
+    "gatsby": "^2.15.36",
+    "gatsby-image": "^2.2.27",
+    "gatsby-plugin-react-helmet": "^3.1.11",
+    "gatsby-plugin-sharp": "^2.2.29",
+    "gatsby-source-filesystem": "^2.1.31",
+    "gatsby-transformer-sharp": "^2.2.21",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-helmet": "^5.2.1",
+    "rebass": "^4.0.6"
+  },
+  "devDependencies": {
+    "fs-extra": "^8.1.0"
+  }
+}

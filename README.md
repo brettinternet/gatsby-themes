@@ -63,13 +63,8 @@ gatsby-theme-margot
 
 ## Themes
 
-### Margo
+To override default options, set options to a "defined falsy" value, such as an empty string (`""`) or `null`. If it's `undefined`, the default value is used to demo the theme.
 
-This is a minimal site designed to display details for an event, an event location or images.
+### Usage
 
-#### Features
-
-- Images with a minimal lightbox
-- Registry details for relevant events (e.g. weddings)
-- Google map to demonstrate an event location [generate maps api key via google console](https://console.cloud.google.com/)
-- Form input with Google Sheets as a database of responses [view responses](https://docs.google.com/spreadsheets/d/1UTNY23iZYWyiEG8BvpdChaI1TQvjjt9jXIVO5x-fG1g/edit?usp=sharing)
+- [Margot](./gatsby-theme-margot/README.md)

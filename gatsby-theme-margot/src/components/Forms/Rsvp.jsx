@@ -11,6 +11,49 @@ import Radio from "components/Radio"
 import { Heading, Text, Box } from "components/Basic"
 import Details from "components/Details"
 
+const Form = styled.form`
+  max-width: 600px;
+  margin: auto;
+`
+
+const StyledButton = styled(Button)`
+  margin: 1rem auto;
+  display: block;
+  height: 100%;
+
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
+`
+
+const inlineStyle = css`
+  display: inline-block;
+  margin-left: 3px;
+`
+
+const Collapse = styled.div`
+  overflow: hidden;
+  height: auto;
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 200ms, max-height 200ms ease-out;
+  --transition: opacity 200ms, max-height 200ms ease-out;
+
+  ${({ show }) =>
+    show &&
+    css`
+      max-height: 80px;
+      visibility: visible;
+      opacity: 1;
+    `};
+`
+
+const Noscript = styled.noscript`
+  display: block;
+  text-align: center;
+`
+
 const formItems = {
   firstName: "first_name",
   lastName: "last_name",
@@ -280,46 +323,3 @@ export class Rsvp extends React.Component {
     )
   }
 }
-
-const Form = styled.form`
-  max-width: 600px;
-  margin: auto;
-`
-
-const StyledButton = styled(Button)`
-  margin: 1rem auto;
-  display: block;
-  height: 100%;
-
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-  }
-`
-
-const inlineStyle = css`
-  display: inline-block;
-  margin-left: 3px;
-`
-
-const Collapse = styled.div`
-  overflow: hidden;
-  height: auto;
-  visibility: hidden;
-  opacity: 0;
-  max-height: 0;
-  transition: opacity 200ms, max-height 200ms ease-out;
-  --transition: opacity 200ms, max-height 200ms ease-out;
-
-  ${({ show }) =>
-    show &&
-    css`
-      max-height: 80px;
-      visibility: visible;
-      opacity: 1;
-    `};
-`
-
-const Noscript = styled.noscript`
-  display: block;
-  text-align: center;
-`
