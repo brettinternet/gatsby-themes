@@ -11,6 +11,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn workspace example start",
+    "start:demo": "yarn workspace demo start",
     "build": "yarn workspace demo build",
     "postbuild": "yarn workspace builder build",
     "predeploy": "yarn run build --prefix-paths",
