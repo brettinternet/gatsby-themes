@@ -6,31 +6,48 @@ import { Flex, Box, Heading, Text } from "rebass"
 
 const headingFontFamily = `'Courier New',Palatino, serif`
 const textFontFamily = `Roboto, Verdana, Arial, sans-serif`
+const textAlign = ["center", "center", "left"]
 
 const IndexPage = ({ data }) => {
-  const { title, description, themes } = data.site.siteMetadata
+  const { title, description, repoUrl, themes } = data.site.siteMetadata
   const pathPrefix = data.site.pathPrefix
 
   return (
-    <>
+    <Flex
+      mx="auto"
+      p={[2, 3, 5]}
+      style={{
+        maxWidth: 960,
+      }}
+      flexWrap="wrap"
+    >
+      <Box width={[1, 1, 1 / 2]}>
+        <Image fluid={data.heroImage.childImageSharp.fluid} />
+      </Box>
       <Flex
-        mx="auto"
-        p={[2, 3, 5]}
-        style={{
-          maxWidth: 960,
-        }}
-        flexWrap="wrap"
+        flexDirection="column"
+        width={[1, 1, 1 / 2]}
+        pl={[0, 0, 4]}
+        pt={3}
+        pb={3}
       >
-        <Box width={[1, 1, 1 / 2]}>
-          <Image fluid={data.heroImage.childImageSharp.fluid} />
-        </Box>
-        <Box width={[1, 1, 1 / 2]} pl={[0, 0, 4]} pt={3} pb={3}>
-          <Heading as="h1" fontFamily={headingFontFamily} fontSize="2rem">
+        <Box flex="1" mb={5}>
+          <Heading
+            as="h1"
+            fontFamily={headingFontFamily}
+            fontSize="2rem"
+            textAlign={textAlign}
+            mb={3}
+          >
             {title}
           </Heading>
-          <p>{description}</p>
+          {description && <p>{description}</p>}
           {themes.map(({ resolve, options }) => (
-            <ul>
+            <Flex
+              as="ul"
+              justifyContent={["center", "center", "left"]}
+              pl={[0, 0, 4]}
+            >
               <Text
                 as="li"
                 fontFamily={textFontFamily}
@@ -46,11 +63,19 @@ const IndexPage = ({ data }) => {
               >
                 <a href={pathPrefix + options.themePathPrefix}>{resolve}</a>
               </Text>
-            </ul>
+            </Flex>
           ))}
         </Box>
+
+        <Text
+          fontFamily={textFontFamily}
+          textAlign={textAlign}
+          fontSize="0.75rem"
+        >
+          <a href={repoUrl}>brettinternet/gatsby-themes</a>
+        </Text>
       </Flex>
-    </>
+    </Flex>
   )
 }
 
@@ -62,6 +87,7 @@ export const query = graphql`
       pathPrefix
       siteMetadata {
         title
+        repoUrl
         themes {
           resolve
           options {
