@@ -17,6 +17,10 @@ const defaults = {
       to: '/rsvp/'
     },
     {
+      name: "Details",
+      to: "/details/",
+    },
+    {
       name: "Registry",
       to: "/registry/",
     },
@@ -24,12 +28,14 @@ const defaults = {
       name: "Photos",
       to: "/photos/",
     },
-    {
-      name: "Details",
-      to: "/details/",
-    },
   ],
   eventDetails: {
+    title: 'Join Us',
+    description: `<div>
+<p>Adaptogen vape narwhal direct trade lumbersexual twee woke brooklyn polaroid iPhone la croix. Before they sold out hella hashtag enamel pin, keffiyeh coloring book yuccie irony marfa tumeric art party air plant portland. Jianbing helvetica chillwave affogato palo santo. Retro kickstarter iPhone chillwave, forage kombucha church-key lomo celiac cred jianbing chartreuse.</p>
+<p>Offal before they sold out franzen master cleanse tacos ugh activated charcoal lyft shoreditch wolf bitters. Disrupt etsy sriracha, post-ironic shabby chic pop-up lyft VHS cliche franzen. Fingerstache listicle knausgaard banh mi, messenger bag mustache cronut vice. Taiyaki pitchfork organic hexagon, health goth echo park freegan.</p>
+<p>Trust fund gluten-free stumptown biodiesel try-hard chartreuse woke activated charcoal cold-pressed church-key +1 small batch helvetica occupy. Readymade actually unicorn raw denim shabby chic. Quinoa meh blue bottle thundercats irony pabst flexitarian gentrify asymmetrical letterpress, authentic pinterest austin everyday carry deep v. Microdosing wayfarers keytar truffaut cray kombucha, normcore kickstarter salvia. Slow-carb ramps cloud bread, pop-up lumbersexual scenester humblebrag church-key paleo forage green juice. Craft beer semiotics lumbersexual single-origin coffee mustache. Put a bird on it flannel locavore gentrify selfies snackwave live-edge truffaut freegan hell of brooklyn air plant.</p>
+</div>`,
     instructions: `Turn left at the fire hydrant. You can't miss it.`,
     date: 'December 1st',
     address: 'Liberty Park<br>Salt Lake City, UT',

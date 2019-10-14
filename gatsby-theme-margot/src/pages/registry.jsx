@@ -10,20 +10,14 @@ import Img from "gatsby-image"
 import { Heading, Flex } from "components/Basic"
 
 const registryStyles = css`
-  border-top: 1px solid ${({ theme }) => theme.colors.lightGray};
-
-  &:last-child {
-    border-bottom: 1px solid ${({ theme }) => theme.colors.lightGray};
-  }
-
   a {
-    transition: all 300ms;
+    transition: all 200ms;
     opacity: 0.8;
 
     &:hover,
     &:active {
       opacity: 1;
-      background: #efefef;
+      background: #f5f5f5;
     }
   }
 `

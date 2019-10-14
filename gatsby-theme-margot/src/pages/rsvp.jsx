@@ -10,7 +10,7 @@ import Hide from "components/Hide"
 
 const RsvpPage = ({ data }) => {
   const heroImage = data.heroImage
-  const { rsvpDetails, eventDetails } = data.site.siteMetadata
+  const { rsvpDetails } = data.site.siteMetadata
   return (
     <>
       <Head title="RSVP" />
@@ -24,7 +24,7 @@ const RsvpPage = ({ data }) => {
             </Box>
           )}
           <Box width={[1, 1, 1 / 2]}>
-            <Rsvp {...rsvpDetails} detailsProps={eventDetails} />
+            <Rsvp {...rsvpDetails} />
           </Box>
         </Flex>
       </Section>
@@ -38,11 +38,6 @@ export const query = graphql`
   query MargotThemeRsvpPageQuery {
     site {
       siteMetadata {
-        eventDetails {
-          address
-          date
-          instructions
-        }
         rsvpDetails {
           note
           googleSheetsScriptUrl

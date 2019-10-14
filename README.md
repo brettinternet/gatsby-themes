@@ -1,5 +1,7 @@
 # Gatsby Themes
 
+[![Demo Build Status](https://travis-ci.org/brettinternet/gatsby-themes.svg?branch=master)](https://travis-ci.org/brettinternet/gatsby-themes)
+
 This is a playground for small sites that I create. I turn them into [Gatsby themes](https://www.gatsbyjs.org/tutorial/building-a-theme/) to reuse or for others to try.
 
 [View demo](https://brettinternet.github.io/gatsby-themes)

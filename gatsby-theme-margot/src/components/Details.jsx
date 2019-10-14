@@ -8,14 +8,7 @@ import { Heading, Text, Box, Flex } from "components/Basic"
 import Link from "components/Link"
 import Map from "components/Map"
 
-const Details = ({
-  isSummary,
-  address,
-  instructions,
-  date,
-  googleMapsApiKey,
-  coordinates,
-}) => {
+const Details = ({ isSummary }) => {
   const data = useStaticQuery(graphql`
     query MargotThemeDetailsComponent {
       site {
@@ -24,13 +17,34 @@ const Details = ({
             name
             to
           }
+          eventDetails {
+            title
+            description
+            instructions
+            address
+            date
+            googleMapsApiKey
+            coordinates {
+              lat
+              lng
+            }
+          }
         }
       }
     }
   `)
 
-  const { menuLinks } = data.site.siteMetadata
+  const { menuLinks, eventDetails = {} } = data.site.siteMetadata
   const detailsPage = find(menuLinks, { name: "Details" })
+  const {
+    title,
+    address,
+    description,
+    instructions,
+    date,
+    googleMapsApiKey,
+    coordinates,
+  } = eventDetails
 
   return (
     <Box>
@@ -42,8 +56,15 @@ const Details = ({
           as="h2"
           fontSize={["2rem", "2rem", "3rem"]}
         >
-          Event Details
+          {title || "Event Details"}
         </Heading>
+        {description && !isSummary && (
+          <Text
+            as="p"
+            mb={5}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        )}
         {date && (
           <Heading
             mb={3}
@@ -70,7 +91,8 @@ const Details = ({
             justifyContent={isSummary ? ["center", "center", "left"] : "center"}
           >
             <Box
-              p={3}
+              py={3}
+              px={5}
               my={3}
               css={css`
                 border: 1px solid ${({ theme }) => theme.colors.lightGray};
@@ -104,9 +126,10 @@ const Details = ({
         </Box>
       )}
 
-      {!isSummary && coordinates && googleMapsApiKey && (
+      {!isSummary && coordinates && !!googleMapsApiKey && (
+        // googleMapsApiKey === "" ||
         <Box my={3}>
-          <Map address={address} apiKey={googleMapsApiKey} />
+          <Map apiKey={googleMapsApiKey} coordinates={coordinates} />
         </Box>
       )}
     </Box>
@@ -115,9 +138,6 @@ const Details = ({
 
 Details.propTypes = {
   isSummary: PropTypes.bool,
-  address: PropTypes.string,
-  instructions: PropTypes.string,
-  date: PropTypes.string,
 }
 
 export default Details

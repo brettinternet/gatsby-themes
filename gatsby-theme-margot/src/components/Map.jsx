@@ -2,6 +2,13 @@ import React from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from "react-google-maps"
+
 const Wrapper = styled.div`
   border: 2px solid ${({ theme }) => theme.colors.lightGray};
 
@@ -25,6 +32,55 @@ const Wrapper = styled.div`
     background: none !important;
   }
 `
+
+const MapPositioned = ({ className, coordinates }) => {
+  return (
+    <GoogleMap
+      className={className}
+      defaultZoom={11}
+      defaultCenter={coordinates}
+      defaultOptions={{
+        disableDefaultUI: true,
+        draggable: true,
+        keyboardShortcuts: false,
+        scaleControl: true,
+        scrollwheel: true,
+        styles: getStyles(),
+      }}
+    >
+      <Marker position={coordinates} />
+    </GoogleMap>
+  )
+}
+
+const MapWithSettings = withScriptjs(withGoogleMap(MapPositioned))
+
+const Map = ({ coordinates, apiKey }) => (
+  <Wrapper>
+    <MapWithSettings
+      googleMapURL={
+        `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places` +
+        apiKey
+          ? `&key=${apiKey}`
+          : ""
+      }
+      loadingElement={<div style={{ height: `100%` }} />}
+      containerElement={<div style={{ height: `400px` }} />}
+      mapElement={<div style={{ height: `100%` }} />}
+      coordinates={coordinates}
+    />
+  </Wrapper>
+)
+
+Map.propTypes = {
+  // apiKey: PropTypes.string.isRequired,
+  coordinates: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  }).isRequired,
+}
+
+export default Map
 
 function getStyles() {
   return [
@@ -204,54 +260,3 @@ function getStyles() {
     },
   ]
 }
-
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from "react-google-maps"
-
-const MapPositioned = ({ className, coordinates }) => {
-  return (
-    <GoogleMap
-      className={className}
-      defaultZoom={11}
-      defaultCenter={coordinates}
-      defaultOptions={{
-        disableDefaultUI: true,
-        draggable: true,
-        keyboardShortcuts: false,
-        scaleControl: true,
-        scrollwheel: true,
-        styles: getStyles(),
-      }}
-    >
-      <Marker position={coordinates} />
-    </GoogleMap>
-  )
-}
-
-const MapWithSettings = withScriptjs(withGoogleMap(MapPositioned))
-
-const Map = ({ coordinates, apiKey }) => (
-  <Wrapper>
-    <MapWithSettings
-      googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${apiKey}`}
-      loadingElement={<div style={{ height: `100%` }} />}
-      containerElement={<div style={{ height: `400px` }} />}
-      mapElement={<div style={{ height: `100%` }} />}
-      coordinates={coordinates}
-    />
-  </Wrapper>
-)
-
-Map.propTypes = {
-  apiKey: PropTypes.string.isRequired,
-  coordinates: PropTypes.shape({
-    lat: PropTypes.number.isRequired,
-    lng: PropTypes.number.isRequired,
-  }).isRequired,
-}
-
-export default Map

@@ -73,7 +73,6 @@ export class Rsvp extends React.Component {
   static propTypes = {
     note: PropTypes.string,
     googleSheetsScriptUrl: PropTypes.string.isRequired,
-    detailsProps: PropTypes.object,
   }
 
   constructor(props) {
@@ -207,7 +206,7 @@ export class Rsvp extends React.Component {
           }}
           my={4}
         />
-        <Details isSummary {...this.props.detailsProps} />
+        <Details isSummary />
       </>
     )
   }
