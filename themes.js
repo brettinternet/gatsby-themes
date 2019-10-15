@@ -8,13 +8,13 @@
  * in the example, or errors will likely throw
  */
 module.exports = [
-  // {
-  //   resolve: `gatsby-theme-margot`,
-  //   options: {
-  //     demoPathPrefix: '/margot',
-  //     demoDescription: 'Minimal theme for events with an RSVP form, event details, photo gallery and registry links.',
-  //   }
-  // },
+  {
+    resolve: `gatsby-theme-margot`,
+    options: {
+      demoPathPrefix: '/margot',
+      demoDescription: 'Minimal theme for events with an RSVP form, event details, photo gallery and registry links.',
+    }
+  },
   {
     resolve: `gatsby-theme-motd`,
     options: {
