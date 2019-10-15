@@ -7,6 +7,7 @@ module.exports = (options) => {
     motdsPath,
     motdsUrl,
     motdComponentPath,
+    demoPathPrefix,
   } = withDefaults(options)
 
   return {
@@ -26,7 +27,14 @@ module.exports = (options) => {
         options: {
           component: require.resolve(motdComponentPath)
         }
-      }
+      },
+      /**
+       * To avoid error: `Unknown type "ImageSharpSizes".`
+       * Where `gatsby-transformer-sharp` is installed in
+       * different workspace
+       * @issue https://github.com/gatsbyjs/gatsby/issues/15625
+       */
+      ...(demoPathPrefix ? [`gatsby-transformer-sharp`,] : [])
     ]
   }
 }

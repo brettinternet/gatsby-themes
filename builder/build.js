@@ -25,13 +25,14 @@ const themes = require(path.join(repoDir, 'themes'))
 const demoConfig = require(path.join(demoDir, 'gatsby-config'))
 const { pathPrefix: demoPathPrefix } = demoConfig
 
+const themeVersion = '1.0.0'
+
 if (!fs.existsSync(demoDir)) {
   throw Error(`The Demo site must be built first with 'gatsby build'. The 'public' directory is the output path of this script.`)
 }
 
 for (let i = 0; i < themes.length; i++) {
   const theme = themes[i];
-  const themeVersion = '1.0.0'
   const themeShortName = theme.options.demoPathPrefix.split('/')[1]
 
   /**
@@ -70,7 +71,7 @@ for (let i = 0; i < themes.length; i++) {
     logger.info(`Wrote gatsby-config.js for ${ theme.resolve } to ${ themeGatsbyConfig }`)
   } catch (err) {
     logger.error(`Unable to create theme's gatsby-config.js`)
-    cleanup()
+    cleanup(theme.resolve)
     throw err
   }
 
@@ -87,7 +88,7 @@ for (let i = 0; i < themes.length; i++) {
     logger.info(`Built ${ theme.resolve }`)
   } catch (err) {
     logger.error('Unable to build the theme')
-    cleanup()
+    cleanup(theme.resolve)
     throw err
   }
 
@@ -100,7 +101,7 @@ for (let i = 0; i < themes.length; i++) {
     logger.info(`Moved build output to ${ themePublicDir }`)
   } catch (err) {
     logger.error(`Unable to move the theme's build output to the public demo folder`)
-    cleanup()
+    cleanup(theme.resolve)
     throw err
   }
 
@@ -109,7 +110,7 @@ for (let i = 0; i < themes.length; i++) {
    * 
    * `gatsby-config.js`
    */
-  cleanup()
+  cleanup(theme.resolve)
 
   logger.info(`Build completed for ${ theme.resolve }`)
 }
@@ -117,7 +118,26 @@ for (let i = 0; i < themes.length; i++) {
 logger.info('Builds completed successfully')
 process.exit()
 
-function cleanup() {
+/**
+ * Removing installed themes allows for cleaner
+ * install on the next theme build
+ *  
+ * Clean up gatsby files
+ */
+function cleanup(themeName) {
+  if (themeName) {
+    try {
+      logger.info(`Removing ${ theme.resolve } from the build workspace`)
+      execSync(`yarn workspace builder remove ${ themeName }`, {
+        cwd: repoDir,
+        stdio: 'inherit'
+      })
+      logger.info(`Removed ${ themeName }`)
+    } catch (err) {
+      logger.error(`Unable to remove ${ themeName } from builder workspace`)
+    }
+  }
+
   const cleanupFiles = [themeGatsbyConfig]
   logger.info(`Cleaning up files ${ cleanupFiles.join(', ') }`)
   cleanupFiles.forEach(cleanupFile => {

@@ -8,12 +8,5 @@ module.exports = {
   },
   plugins: [
     ...useSelectedThemes,
-    /**
-     * To avoid error: `Unknown type "ImageSharpSizes".`
-     * Where `gatsby-transformer-sharp` is installed in
-     * different workspace
-     * @issue https://github.com/gatsbyjs/gatsby/issues/15625
-     */
-    `gatsby-transformer-sharp`,
   ],
 }

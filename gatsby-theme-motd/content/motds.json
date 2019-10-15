@@ -1,7 +1,7 @@
 [
   {
     "version": "1",
-    "title": "MOTDs can be given a version",
+    "title": "MOTDs can be versioned to force updates",
     "message": "Changes to most fields are already detected, so that dismissed MOTDs can reappear for updates. However, changes to the message may not be deteced, so increasing the version may be necessary.",
     "href": "https://brettinternet.com/gatsby-themes/",
     "linkText": "View gatsby themes",
