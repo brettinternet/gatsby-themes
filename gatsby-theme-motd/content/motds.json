@@ -1,0 +1,52 @@
+[
+  {
+    "version": "1",
+    "title": "MOTDs can be given a version",
+    "message": "Changes to most fields are already detected, so that dismissed MOTDs can reappear for updates. However, changes to the message may not be deteced, so increasing the version may be necessary.",
+    "href": "https://brettinternet.com/gatsby-themes/",
+    "linkText": "View gatsby themes",
+    "statusLevel": "info",
+    "startDate": "May 1995"
+  },
+  {
+    "title": "Everything is fine!",
+    "message": "The users are all very content. I put Prozac on their keyboards.",
+    "href": "https://duckduckgo.com",
+    "linkText": "View status page",
+    "statusLevel": "warning"
+  },
+  {
+    "title": "Everything is fine!",
+    "message": "The users are all very content. I put Prozac on their keyboards. Things are better now.",
+    "href": "https://duckduckgo.com",
+    "linkText": "Search for happiness",
+    "statusLevel": "neutral"
+  },
+  {
+    "title": "Everything is fine!",
+    "message": "The users are all very content. I put Prozac on their keyboards. Things are better now.",
+    "href": "https://duckduckgo.com",
+    "linkText": "Search for happiness",
+    "statusLevel": "success"
+  },
+  {
+    "version": "1",
+    "title": "Houston, we have a problem",
+    "message": "The print server is down. All hands on deck.",
+    "linkText": "View status page",
+    "statusLevel": "error"
+  },
+  {
+    "title": "You can't see me!",
+    "message": "This is an expired MOTD and it won't show up!",
+    "statusLevel": "success",
+    "endDate": "2018-10-31"
+  },
+  {
+    "title": "Please vote",
+    "message": "This MOTD will only show up on the 2020 election day.",
+    "statusLevel": "warning",
+    "startDate": "Nov 3 2020 00:00:00 GMT-0700",
+    "endDate": "Nov 3 2020 23:59:59 GMT-0700"
+  }
+]
