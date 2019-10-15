@@ -1,0 +1,10 @@
+{
+  "version": "1",
+  "title": "Houston, we have a problem",
+  "message": "The print server is down. All hands on deck.",
+  "href": "https://duckduckgo.com",
+  "linkText": "View status page",
+  "statusLevel": "warning",
+  "startDate": "",
+  "endDate": ""
+}

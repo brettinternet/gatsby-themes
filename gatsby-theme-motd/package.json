@@ -1,0 +1,16 @@
+{
+  "name": "gatsby-theme-motd",
+  "version": "1.0.0",
+  "main": "gatsby-config.js",
+  "author": "Brett Internet <brettinternet@gmail.com> (@brettinternet)",
+  "peerDependencies": {
+    "gatsby": "^2.16.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.10.6",
+    "gatsby-plugin-layout": "^1.1.13",
+    "gatsby-plugin-styled-components": "^3.1.11"
+  }
+}

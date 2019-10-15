@@ -1,5 +1,3 @@
-const { get } = require('lodash')
-
 const defaults = {
   title: 'Margot',
   description: `A Gatsby theme by @brettinternet`,
@@ -138,8 +136,8 @@ module.exports = (options) => Object.assign({}, options, {
 })
 
 function useDefault(options, key) {
-  const value = get(options, key)
-  return value === undefined ? get(defaults, key) : useFalsyEmptyString(value)
+  const value = options[key]
+  return value === undefined ? defaults[key] : useFalsyEmptyString(value)
 }
 
 function useFalsyEmptyString(value) {

@@ -4,8 +4,9 @@ import { graphql } from "gatsby"
 import Image from "gatsby-image"
 import { Flex, Box, Heading, Text } from "rebass"
 
-const headingFontFamily = `'Courier New',Palatino, serif`
-const textFontFamily = `Roboto, Verdana, Arial, sans-serif`
+const headingFontFamily = `"Courier New", Courier, Palatino, serif`
+const textFontFamily = `Roboto, Verdana, Helvetica, Arial, sans-serif`
+const monoFontFamily = `"Lucida Console", Monaco, monospace`
 const textAlign = ["center", "center", "left"]
 
 const IndexPage = ({ data }) => {
@@ -35,23 +36,28 @@ const IndexPage = ({ data }) => {
           <Heading
             as="h1"
             fontFamily={headingFontFamily}
-            fontSize="2rem"
+            fontSize="1.2rem"
             textAlign={textAlign}
             mb={3}
           >
             {title}
           </Heading>
           {description && <p>{description}</p>}
-          {themes.map(({ resolve, options }) => (
-            <Flex
-              as="ul"
-              justifyContent={["center", "center", "left"]}
-              pl={[0, 0, 4]}
-            >
+          <Flex
+            as="ul"
+            flexDirection="column"
+            justifyContent={["center", "center", "left"]}
+            pl={4}
+            // pl={[0, 0, 4]}
+          >
+            {themes.map(({ resolve, options }) => (
               <Text
                 as="li"
                 fontFamily={textFontFamily}
+                fontSize="0.9rem"
                 css={`
+                  list-style-type: upper-roman;
+
                   a {
                     color: blue;
 
@@ -60,17 +66,34 @@ const IndexPage = ({ data }) => {
                     }
                   }
                 `}
+                mb={3}
               >
-                <a href={pathPrefix + options.demoPathPrefix}>{resolve}</a>
+                <Text fontFamily={monoFontFamily}>
+                  <a href={pathPrefix + options.demoPathPrefix}>{resolve}</a>
+                </Text>
+                {options.demoDescription && (
+                  <Text color="gray" fontSize="0.6rem" my={1} lineHeight={1.5}>
+                    {options.demoDescription}
+                  </Text>
+                )}
               </Text>
-            </Flex>
-          ))}
+            ))}
+          </Flex>
         </Box>
 
         <Text
           fontFamily={textFontFamily}
           textAlign={textAlign}
-          fontSize="0.75rem"
+          fontSize="0.7rem"
+          css={`
+            a {
+              color: blue;
+
+              &:visited: {
+                color: blue;
+              }
+            }
+          `}
         >
           <a href={repoUrl}>brettinternet/gatsby-themes</a>
         </Text>
@@ -92,6 +115,7 @@ export const query = graphql`
           resolve
           options {
             demoPathPrefix
+            demoDescription
           }
         }
       }
