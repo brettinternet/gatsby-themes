@@ -6,11 +6,12 @@ const chalk = require('chalk')
 
 class Log {
   info(...msgs) {
-    chalk.blue('> build.js (info): ') + chalk.white(msgs.join(' '))
+    console.log(chalk.white.bgBlue.bold('> build.js (info):') + ' ' + chalk.blue(msgs.join(' ')))
   }
 
-  error(...msgs) {
-    chalk.red(`> build.js (error): ${ msgs.join(' ') }`)
+  error(msg, err) {
+    console.log(chalk.white.bgRed.bold(`> build.js (error):`) + ' ' + chalk.red(msg))
+    if (err) console.error(err)
   }
 }
 
@@ -127,14 +128,14 @@ process.exit()
 function cleanup(themeName) {
   if (themeName) {
     try {
-      logger.info(`Removing ${ theme.resolve } from the build workspace`)
+      logger.info(`Removing ${ themeName } from the build workspace`)
       execSync(`yarn workspace builder remove ${ themeName }`, {
         cwd: repoDir,
         stdio: 'inherit'
       })
       logger.info(`Removed ${ themeName }`)
     } catch (err) {
-      logger.error(`Unable to remove ${ themeName } from builder workspace`)
+      logger.error(`Unable to remove ${ themeName } from builder workspace`, err)
     }
   }
 

@@ -12,8 +12,7 @@
   "scripts": {
     "start": "yarn workspace example start",
     "start:demo": "yarn workspace demo start",
-    "build": "yarn workspace demo build",
-    "postbuild": "yarn workspace builder build",
+    "build": "yarn workspace builder build",
     "predeploy": "yarn run build --prefix-paths",
     "deploy": "gh-pages -d demo/public",
     "test": "test --passWithNoTests"

@@ -65,8 +65,53 @@ gatsby-theme-margot
 
 ## Themes
 
-To override default options, set options to a "defined falsy" value, such as an empty string (`""`) or `null`. If it's `undefined`, the default value is used to demo the theme.
+- [Margot](./gatsby-theme-margot/README.md)
+- [MOTD](./gatsby-theme-motd/README.md)
 
 ### Usage
 
-- [Margot](./gatsby-theme-margot/README.md)
+Add the theme in the plugins array.
+
+```js
+module.exports = {
+  siteMetadata: {
+    title: "My Themed Gatsby App",
+  },
+  plugins: [
+    {
+      resolve: `gatsby-theme-margot`,
+      options: {
+        // options
+      },
+    },
+  ],
+}
+```
+
+### Options
+
+To override default options, set option fields to a "defined falsy" value, such as an empty string (`""`) or `null`. If it's `undefined`, the default value is used to demo the theme.
+
+There are two ways to pass options to the theme.
+
+#### 1. Pass options into options object of the theme plugin
+
+```js
+{
+  resolve: `gatsby-theme-margot`,
+  options: {
+    title: 'My site',
+  },
+},
+```
+
+#### 2. Set values in your `gatsby-config.js` as `SiteMetadata`
+
+```js
+siteMetadata: {
+  title: 'My other site',
+  eventDetails: {
+    description: undefined,
+  }
+},
+```

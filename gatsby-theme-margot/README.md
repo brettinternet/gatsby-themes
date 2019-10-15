@@ -1,63 +1,17 @@
-### Margo
+# Margo
 
 This is a minimal site designed to display details for an event, an event location or images.
 
 [Margot theme demo](https://brettinternet.github.io/gatsby-themes/margot/)
 
-#### Features
+## Features
 
 - Images with a minimal lightbox
 - Registry details for relevant events (e.g. weddings)
 - Google map to demonstrate an event location [generate maps api key via google console](https://console.cloud.google.com/)
 - Form input with Google Sheets as a database of responses [view responses](https://docs.google.com/spreadsheets/d/1UTNY23iZYWyiEG8BvpdChaI1TQvjjt9jXIVO5x-fG1g/edit?usp=sharing)
 
-#### Usage
-
-Add the theme in the plugins array.
-
-```js
-module.exports = {
-  siteMetadata: {
-    title: "My Themed Gatsby App",
-  },
-  plugins: [
-    {
-      resolve: `gatsby-theme-margot`,
-      options: {
-        // options
-      },
-    },
-  ],
-}
-```
-
-#### Options
-
-There are two ways to pass options to the theme.
-
-##### 1. Pass options into options object of the theme plugin
-
-```js
-{
-  resolve: `gatsby-theme-margot`,
-  options: {
-    title: 'My site',
-  },
-},
-```
-
-##### 2. Set values in your `gatsby-config.js` as `SiteMetadata`
-
-```js
-siteMetadata: {
-  title: 'My other site',
-  eventDetails: {
-    description: undefined,
-  }
-},
-```
-
-##### Example options
+## Options
 
 Set fields to `undefined` to remove the default values. The defaults are there to demonstrate usage.
 
