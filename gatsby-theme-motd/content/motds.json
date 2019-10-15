@@ -23,10 +23,9 @@
     "statusLevel": "neutral"
   },
   {
-    "title": "Everything is fine!",
-    "message": "The users are all very content. I put Prozac on their keyboards. Things are better now.",
-    "href": "https://duckduckgo.com",
-    "linkText": "Search for happiness",
+    "title": "Check this out",
+    "message": "This one has a local link.",
+    "to": "/",
     "statusLevel": "success"
   },
   {

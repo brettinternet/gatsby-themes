@@ -5,12 +5,14 @@ const isProd = process.env.NODE_ENV === 'production'
 module.exports = (options) => {
   const {
     motdsPath,
+    motdsUrl,
     motdComponentPath,
   } = withDefaults(options)
 
   return {
     siteMetadata: {
       motdsPath,
+      motdsUrl,
     },
     plugins: [
       {

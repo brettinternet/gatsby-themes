@@ -6,7 +6,7 @@ export default {
     linkHover: 'blue',
     [statusLevels.SUCCESS]: {
       color: 'darkgreen',
-      bg: 'lightgreen',
+      bg: '#d2e9af',
     },
     [statusLevels.INFO]: {
       color: 'darkblue',
@@ -17,12 +17,16 @@ export default {
       bg: 'lightyellow',
     },
     [statusLevels.ERROR]: {
-      color: 'darkred',
-      bg: 'lightred',
+      color: 'maroon',
+      bg: '#eddcdc',
     },
     [statusLevels.NEUTRAL]: {
-      color: 'darkgray',
+      color: 'black',
       bg: 'lightgray',
     },
   },
+  fonts: {
+    heading: 'Roboto, Verdana, Helvetica, Arial, sans-serif',
+    body: 'Roboto, Verdana, Helvetica, Arial, sans-serif',
+  }
 }

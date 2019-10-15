@@ -1,14 +1,37 @@
 import React from "react"
-// import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
+import PropTypes from "prop-types"
 import styled from "styled-components"
-// import fetch from "isomorphic-unfetch"
+import fetch from "unfetch"
 import {
-  IGNORE_MOTD_IDS_KEY,
+  DISMISS_MOTD_IDS_KEY,
   getLocalStorage,
   setLocalStorage,
 } from "../utils/storage"
 import logger from "../utils/logger"
-import Alert from "./Alert"
+import Alert, { statusLevels } from "./Alert"
+import { ThemeProvider, createGlobalStyle } from "styled-components"
+import theme from "../utils/theme"
+
+export { statusLevels }
+
+const acceptableMotdKeys = [
+  "version",
+  "title",
+  "message",
+  "href",
+  "to",
+  "linkText",
+  "statusLevel",
+  "startDate",
+  "endDate",
+]
+
+const BodyNoMargin = createGlobalStyle`
+  body {
+    margin: 0;
+  }
+`
 
 const Wrapper = styled.div`
   position: relative;
@@ -19,10 +42,14 @@ const Wrapper = styled.div`
 
 const defaultState = {
   messages: [],
-  ignoreMessageIds: [],
+  dismissedMessageIds: [],
 }
 
 class Motd extends React.Component {
+  static propTypes = {
+    motdsUrl: PropTypes.string,
+  }
+
   wrapperRef
 
   constructor(props) {
@@ -38,20 +65,35 @@ class Motd extends React.Component {
   }
 
   getMotds = () =>
-    this.props.motds ? this.updateMessages(this.props.motds) : this.fetchMotds()
+    this.props.motds
+      ? this.updateMessages(this.props.motds)
+      : this.fetchMotds(this.props.motdsUrl)
 
-  fetchMotds = () => {
-    // fetch(this.props.fetchUrl)
-    //   .then(this.deserializeResponse)
-    //   .then(this.updateMessages)
-    //   .catch(this.handleError)
+  fetchMotds = url => {
+    fetch(url)
+      .then(this.deserializeResponse)
+      .then(this.updateMessages)
+      .catch(this.handleError)
   }
 
-  deserializeResponse = data => data.json()
+  deserializeResponse = data => {
+    const body = data.json()
+    for (let key in body) {
+      if (acceptableMotdKeys.indexOf(key) === -1) {
+        logger.warn(
+          `Received unacceptable field on MOTD${
+            body.title ? ` with title ${body.title}` : ""
+          } - key: ${key}`
+        )
+      }
+    }
+    return body
+  }
 
   updateMessages = motds => {
+    if (!motds || motds.length === 0) return
     try {
-      var ignoreMessageIds = getLocalStorage(IGNORE_MOTD_IDS_KEY) || []
+      var dismissedMessageIds = getLocalStorage(DISMISS_MOTD_IDS_KEY) || []
     } catch (err) {
       logger.error(err)
     }
@@ -61,7 +103,7 @@ class Motd extends React.Component {
     /**
      * We don't use `.map` + `.filter` here for performance,
      * and because we're manage various side effects with
-     * `messages`, `ignoreMessageIds`, `allPublishedMessageIds`
+     * `messages`, `dismissedMessageIds`, `allPublishedMessageIds`
      * so it's some dirty impure code anyway.
      */
     for (let i = 0; i < motds.length; i++) {
@@ -70,12 +112,12 @@ class Motd extends React.Component {
 
       /**
        * Use `sys.id` (contentful record ID) and `updatedAt` as
-       * unique identifiers in case an ignored MOTD is updated
+       * unique identifiers in case an dismissed MOTD is updated
        * or it's unpublished and republished (used a template
        * for a recurring issue/alert)
        */
       const uniqueIdentifier = this.getUniqueIdentifier(motd)
-      const id = `${uniqueIdentifier}v${version}`
+      const id = `${uniqueIdentifier}${version ? `v${version}` : ""}`
       allPublishedMessageIds.push(id)
 
       const startDate = startDateStr ? new Date(startDateStr) : undefined
@@ -83,45 +125,43 @@ class Motd extends React.Component {
       const nowDate = new Date()
 
       if (
-        ignoreMessageIds.indexOf(id) === -1 &&
+        dismissedMessageIds.indexOf(id) === -1 &&
         (!startDate || nowDate > startDate) &&
         (!endDate || nowDate < endDate)
       ) {
         messages.push({
           id,
-          startDate,
-          endDate,
           title: motd.title,
           message: motd.message,
           href: motd.href,
-          linkText: motd.linkText,
           to: motd.to,
+          linkText: motd.linkText,
           statusLevel: motd.statusLevel,
         })
       }
     }
 
     /**
-     * Clean up - remove unpublished Motds from `ignoreMessageIds`
+     * Clean up - remove unpublished Motds from `dismissedMessageIds`
      * So localStorage value doesn't grow indefinitely
      */
-    for (let i = 0; i < ignoreMessageIds.length; i++) {
-      const ignoreId = ignoreMessageIds[i]
-      if (allPublishedMessageIds.indexOf(ignoreId) === -1) {
-        ignoreMessageIds.splice(i, 1)
+    for (let i = 0; i < dismissedMessageIds.length; i++) {
+      const dismissId = dismissedMessageIds[i]
+      if (allPublishedMessageIds.indexOf(dismissId) === -1) {
+        dismissedMessageIds.splice(i, 1)
       }
     }
 
     this.setState(
       {
         messages,
-        ignoreMessageIds,
+        dismissedMessageIds,
       },
       /**
        * Prioritize setting state first, then set localeStorage as side-effect
        */
       () => {
-        setLocalStorage(IGNORE_MOTD_IDS_KEY, ignoreMessageIds)
+        setLocalStorage(DISMISS_MOTD_IDS_KEY, dismissedMessageIds)
         if (this.wrapperRef.current && messages.length > 0) {
           this.expandElement(this.wrapperRef.current)
         }
@@ -157,19 +197,19 @@ class Motd extends React.Component {
   /**
    * When a user closes a single MOTD
    */
-  handleMessageClose = ev => {
+  handleMessageDismiss = ev => {
     const messageId = ev.currentTarget.name
-    const ignoreMessageIds = [...this.state.ignoreMessageIds, messageId]
+    const dismissedMessageIds = [...this.state.dismissedMessageIds, messageId]
     const messages = this.state.messages.filter(
-      item => ignoreMessageIds.indexOf(item.id) === -1
+      item => dismissedMessageIds.indexOf(item.id) === -1
     )
     this.setState(
       {
-        ignoreMessageIds,
+        dismissedMessageIds,
         messages,
       },
       () => {
-        setLocalStorage(IGNORE_MOTD_IDS_KEY, ignoreMessageIds)
+        setLocalStorage(DISMISS_MOTD_IDS_KEY, dismissedMessageIds)
         if (messages.length === 0) {
           this.wrapperRef.current.dataset.collapsed = "true"
         }
@@ -180,7 +220,8 @@ class Motd extends React.Component {
   render() {
     const { messages } = this.state
     return (
-      <>
+      <ThemeProvider theme={theme}>
+        <BodyNoMargin />
         <Wrapper
           ref={this.wrapperRef}
           style={{ height: 0 }}
@@ -188,17 +229,17 @@ class Motd extends React.Component {
         >
           {messages.length > 0 &&
             messages.map(
-              ({ id, title, message, statusLevel, link, linkText }) => (
+              ({ id, title, message, statusLevel, href, to, linkText }) => (
                 <Alert
                   key={id}
                   title={title}
                   message={message}
                   statusLevel={statusLevel}
-                  href={link}
+                  href={href}
+                  to={to}
                   linkText={linkText}
-                  noBorder
-                  closeButtonProps={{
-                    onClick: this.handleMessageClose,
+                  dismissButtonProps={{
+                    onClick: this.handleMessageDismiss,
                     name: id,
                   }}
                 />
@@ -206,7 +247,7 @@ class Motd extends React.Component {
             )}
         </Wrapper>
         {this.props.children}
-      </>
+      </ThemeProvider>
     )
   }
 
@@ -227,4 +268,16 @@ class Motd extends React.Component {
   }
 }
 
-export default Motd
+export default () => {
+  const data = useStaticQuery(graphql`
+    query MotdQuery {
+      site {
+        siteMetadata {
+          motdsUrl
+        }
+      }
+    }
+  `)
+
+  return <Motd motdsUrl={data.site.siteMetadata.motdsUrl} />
+}

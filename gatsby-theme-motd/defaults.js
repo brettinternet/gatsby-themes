@@ -1,11 +1,13 @@
 const defaults = {
+  motdComponentPath: `${ __dirname }/src/components/Motd.jsx`,
   motdsPath: `${ __dirname }/content/motds`,
-  motdComponentPath: `${ __dirname }/src/components/Motd.jsx`
+  motdsUrl: 'https://raw.githubusercontent.com/brettinternet/gatsby-themes/master/gatsby-theme-motd/content/motds.json',
 }
 
 module.exports = (options) => Object.assign({}, options, {
-  motdsPath: useDefault(options, 'motdsPath'),
   motdComponentPath: useDefault(options, 'motdComponentPath'),
+  motdsPath: useDefault(options, 'motdsPath'),
+  motdsUrl: useDefault(options, 'motdsUrl'),
 })
 
 function useDefault(options, key) {

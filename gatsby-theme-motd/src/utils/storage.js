@@ -14,21 +14,6 @@ export const removeLocalStorage = (key) => {
 }
 
 /**
- * Session storage
- */
-export const getSessionStorage = (key) => {
-  if (key) return JSON.parse(sessionStorage.getItem(key))
-}
-
-export const setSessionStorage = (key, value) => {
-  if (key && value) return sessionStorage.setItem(key, JSON.stringify(value))
-}
-
-export const removeSessionStorage = (key) => {
-  if (key) return sessionStorage.removeItem(key)
-}
-
-/**
  * Property names
  */
-export const IGNORE_MOTD_IDS_KEY = 'ignoreMotdIds'
+export const DISMISS_MOTD_IDS_KEY = 'dismissedMotdIds'
