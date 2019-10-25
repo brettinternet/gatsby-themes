@@ -17,6 +17,4 @@ before_script:
   - "npm i -g gatsby"
   - "yarn"
 script:
-  - "yarn run build"
-after_success:
-  - "yarn run deploy"
+  - "yarn run build --prefix-paths"
