@@ -23,7 +23,8 @@
     "demo",
     "builder",
     "gatsby-theme-margot",
-    "gatsby-theme-motd"
+    "gatsby-theme-motd",
+    "gatsby-theme-reveal"
   ],
   "devDependencies": {
     "gh-pages": "^2.1.1",

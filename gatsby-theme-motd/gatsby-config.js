@@ -1,13 +1,14 @@
-const withDefaults = require('./defaults')
+const withDefaults = require("./defaults")
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === "production"
 
-module.exports = (options) => {
+module.exports = options => {
   const {
     motdsPath,
     motdsUrl,
     motdComponentPath,
     demoPathPrefix,
+    pageCreatorIgnore,
   } = withDefaults(options)
 
   return {
@@ -16,17 +17,27 @@ module.exports = (options) => {
       motdsUrl,
     },
     plugins: [
+      /**
+       * Theme plugin
+       */
       {
-        resolve: 'gatsby-plugin-styled-components',
+        resolve: "gatsby-plugin-page-creator",
         options: {
-          displayName: !isProd,
-        }
+          path: `${__dirname}/src/pages`,
+          ignore: pageCreatorIgnore,
+        },
       },
       {
-        resolve: 'gatsby-plugin-layout',
+        resolve: "gatsby-plugin-styled-components",
         options: {
-          component: require.resolve(motdComponentPath)
-        }
+          displayName: !isProd,
+        },
+      },
+      {
+        resolve: "gatsby-plugin-layout",
+        options: {
+          component: require.resolve(motdComponentPath),
+        },
       },
       /**
        * To avoid error: `Unknown type "ImageSharpSizes".`
@@ -34,7 +45,7 @@ module.exports = (options) => {
        * different workspace
        * @issue https://github.com/gatsbyjs/gatsby/issues/15625
        */
-      ...(demoPathPrefix ? [`gatsby-transformer-sharp`,] : [])
-    ]
+      ...(demoPathPrefix ? [`gatsby-transformer-sharp`] : []),
+    ],
   }
 }
